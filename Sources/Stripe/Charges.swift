@@ -8,6 +8,8 @@
 import Foundation
 
 public struct Charges: Codable {
+    public static let schema = "charges"
+    
     public let object: String
     /// The client secret of this Order. Used for client-side retrieval using a publishable key.
     /// The client secret can be used to comppublic lete a payment for an Order from your frontend. It should not be stored, logged, embedded in URLs, or exposed to anyone other than the customer. Make sure that you have TLS enabled on any page that includes the client secret.
