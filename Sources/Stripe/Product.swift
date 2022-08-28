@@ -8,7 +8,7 @@
 import Foundation
 
 public struct Product: Codable {
-    static let schema = "products"
+    public static let schema = "products"
     
     /// The unique identifier of this product
     public let id: String

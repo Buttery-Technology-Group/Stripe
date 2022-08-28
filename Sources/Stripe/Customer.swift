@@ -8,7 +8,7 @@
 import Foundation
 
 public struct Customer: Codable {
-    static let schema = "customers"
+    public static let schema = "customers"
     
     public let id, object: String
     public let address: Address?

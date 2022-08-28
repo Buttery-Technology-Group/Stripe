@@ -8,7 +8,7 @@
 import Foundation
 
 public struct Payment: Codable {
-    static let schema = "payments"
+    public static let schema = "payments"
     
     /// ID of the payment intent associated with this order. Null when the order is open.
     public let paymentIntent: PaymentIntent.Expandable?
