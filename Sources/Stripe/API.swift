@@ -18,7 +18,7 @@ public struct API {
     
     /// The secret used to access live or test data.
     ///
-    /// This is `private` to keep access restricted locally and ensure setting this is deliberate. Also, this secret **must** be setup *before* accessing. Please call `-initialize(endPoint:liveSecret:testSecret:)` to set up `API` before use.
+    /// This is `private` to keep access restricted locally and ensure setting this is deliberate. Also, this secret **must** be setup *before* accessing. Please call `-initialize(endPoint:secret:)` to set up `API` before use.
     public private(set) var secret: String!
     
     public init() {}
@@ -28,7 +28,6 @@ public struct API {
     /// - Parameters:
     ///     - endPoint: The URL endpoint to connect to.
     ///     - secret: The secret for live data. **Please use environment variables to keep this secure**
-    ///     - testSecret: The secret for test data. **Please use environment variables to keep this secure**
     public init(endPoint: String, secret: String) {
         self.endPoint = endPoint
         self.secret = secret
