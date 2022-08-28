@@ -16,15 +16,10 @@ public struct API {
     /// The endpoint to connect to `Stripe` services.
     public var endPoint: String!
     
-    /// The secret used to access live data.
+    /// The secret used to access live or test data.
     ///
     /// This is `private` to keep access restricted locally and ensure setting this is deliberate. Also, this secret **must** be setup *before* accessing. Please call `-initialize(endPoint:liveSecret:testSecret:)` to set up `API` before use.
-    public private(set) var liveSecret: String!
-    
-    /// The secret used to access test data.
-    ///
-    /// This is `private` to keep access restricted locally and ensure setting this is deliberate. Also, this secret **must** be setup *before* accessing. Please call `-initialize(endPoint:liveSecret:testSecret:)` to set up `API` before use.
-    public private(set) var testSecret: String!
+    public private(set) var secret: String!
     
     public init() {}
     
@@ -32,12 +27,11 @@ public struct API {
     ///
     /// - Parameters:
     ///     - endPoint: The URL endpoint to connect to.
-    ///     - liveSecret: The secret for live data. **Please use environment variables to keep this secure**
+    ///     - secret: The secret for live data. **Please use environment variables to keep this secure**
     ///     - testSecret: The secret for test data. **Please use environment variables to keep this secure**
-    public init(endPoint: String, live: String, test: String) {
+    public init(endPoint: String, secret: String) {
         self.endPoint = endPoint
-        self.liveSecret = live
-        self.testSecret = test
+        self.secret = secret
     }
 }
 
@@ -46,20 +40,15 @@ extension API {
     ///
     /// - Parameters:
     ///     - endPoint: The URL endpoint to connect to.
-    ///     - liveSecret: The secret for live data. **Please use environment variables to keep this secure**
-    ///     - testSecret: The secret for test data. **Please use environment variables to keep this secure**
-    public static func initialize(endPoint: String = "http://api.stripe.com/v1/", liveSecret: String, testSecret: String) {
+    ///     - secret: The secret for live or test data. **Please use environment variables to keep this secure**
+    public static func initialize(endPoint: String = "http://api.stripe.com/v1/", secret: String) {
         API.setEndPoint(endPoint)
-        API.setLiveSecret(liveSecret)
-        API.setTestSecret(testSecret)
+        API.setSecret(secret)
     }
     fileprivate static func setEndPoint(_ endPoint: String) {
         API.shared.endPoint = endPoint
     }
-    fileprivate static func setLiveSecret(_ secret: String) {
-        API.shared.liveSecret = secret
-    }
-    fileprivate static func setTestSecret(_ secret: String) {
-        API.shared.testSecret = secret
+    fileprivate static func setSecret(_ secret: String) {
+        API.shared.secret = secret
     }
 }
