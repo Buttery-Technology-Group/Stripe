@@ -11,7 +11,7 @@ import Foundation
 ///
 /// - Note: When interacting with the `shared` instance, the secrets **must** be setup *before* accessing. Please call `-initialize(endPoint:liveSecret:testSecret:)` to set up `API` before use.
 public struct API {
-    static var shared = API()
+    public static var shared = API()
     
     /// The endpoint to connect to `Stripe` services.
     public var endPoint: String!
